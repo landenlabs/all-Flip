@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d0d0d0"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:shadowColor="#ffffff"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="4"
+        android:singleLine="true"
+        android:text="Flip Animation Demo"
+        android:textAppearance="@style/TextAppearanceBlack20" />
+
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title1"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Dennis Lang (LanDen Labs)"
+        android:textAppearance="@style/TextAppearanceBlack20" />
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@id/title2"
+        android:background="@drawable/line_3d_top" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/scratches"
+        android:src="@drawable/bg_tiled" />
+
+    <TextView
+        android:id="@+id/ver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/round_border"
+        android:padding="5dp"
+        android:text="v1.1"
+        android:textAppearance="@style/TextAppearanceBlack20" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/round_border"
+        android:padding="5dp"
+        android:text="3/22/2015"
+        android:textAppearance="@style/TextAppearanceBlack16" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_above="@+id/logo"
+        android:background="@drawable/line_3d_bot" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/line2"
+        android:layout_below="@id/line1"
+        android:background="@drawable/grid"
+        android:src="#20000000" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_above="@id/line2"
+        android:layout_below="@id/line1">
+
+        <!-- RadioGroup bug - cannot use android:layout_gravity="center" -->
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/item5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_border_sel"
+                android:button="@null"
+                android:padding="15dp"
+                android:text="Two ObjectAnimators"
+                android:textAppearance="@style/TextAppearanceBlack20" />
+
+            <RadioButton
+                android:id="@+id/item1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_border_sel"
+                android:button="@null"
+                android:padding="15dp"
+                android:text="ViewAnimator ViewFlipper"
+                android:textAppearance="@style/TextAppearanceBlack20" />
+
+            <RadioButton
+                android:id="@+id/item2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_border_sel"
+                android:button="@null"
+                android:padding="15dp"
+                android:text="Two rotating animations"
+                android:textAppearance="@style/TextAppearanceBlack20" />
+
+            <RadioButton
+                android:id="@+id/item3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_border_sel"
+                android:button="@null"
+                android:padding="15dp"
+                android:text="Two rot anim. w/ adjustment"
+                android:textAppearance="@style/TextAppearanceBlack20" />
+
+            <RadioButton
+                android:id="@+id/item4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_border_sel"
+                android:button="@null"
+                android:padding="15dp"
+                android:text="Obj Anim Images"
+                android:textAppearance="@style/TextAppearanceBlack20" />
+
+            <RadioButton
+                android:id="@+id/objAnimListRT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_border_sel"
+                android:button="@null"
+                android:padding="15dp"
+                android:text="Obj Anim List Cube"
+                android:textAppearance="@style/TextAppearanceBlack20" />
+
+            <RadioButton
+                android:id="@+id/objAnimListR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_border_sel"
+                android:button="@null"
+                android:padding="15dp"
+                android:text="Obj Anim List Rot"
+                android:textAppearance="@style/TextAppearanceBlack20" />
+
+        </RadioGroup>
+    </ScrollView>
+</RelativeLayout>

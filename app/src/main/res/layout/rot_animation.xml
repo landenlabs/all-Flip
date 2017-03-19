@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#c0c0c0"
+        android:src="@drawable/bg_tiled"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:text="Speed:xxx Scale:xxx"
+        android:textAppearance="@style/TextAppearanceBlack20"/>
+
+    <include
+        android:id="@+id/cameraZpos"
+        layout="@layout/labelledseekbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/title"/>
+
+    <include
+        android:id="@+id/seekSpeed"
+        layout="@layout/labelledseekbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"/>
+
+    <CheckBox
+        android:id="@+id/yaxis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/seekSpeed"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/white"
+        android:checked="true"
+        android:text="Y axis"/>
+
+    <CheckBox
+        android:id="@+id/autoflip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/seekSpeed"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/white"
+        android:text="autoflip"
+        />
+
+
+    <com.landenlabs.all_flipanimation.DrawView
+        android:id="@+id/drawView"
+        android:layout_below="@id/cameraZpos"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#e0e0e0"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/angle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="11"
+        android:layout_alignBottom="@+id/drawView"
+        android:layout_toLeftOf="@+id/drawView"/>
+
+    <TextView
+        android:id="@+id/angle2"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22"
+        android:layout_alignBottom="@+id/drawView"
+        android:layout_toRightOf="@+id/drawView"/>
+
+    <RelativeLayout
+        android:id="@+id/view_holder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@id/yaxis"
+        android:layout_below="@id/drawView"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/round_border1"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Hello World"
+            android:textColor="#ff0000"
+            android:textSize="60sp"/>
+
+        <TextView
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/round_border2"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Good Bye"
+            android:textColor="#00ff00"
+            android:textSize="60sp"/>
+
+        <TextView
+            android:id="@+id/click_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="20dp"
+            android:text="Click to animate"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"/>
+    </RelativeLayout>
+
+    <com.landenlabs.all_flipanimation.VerticalTextView
+        android:id="@+id/side_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:shadowColor="@android:color/white"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="4"
+        android:text="xxx"
+        android:textAppearance="@style/TextAppearanceBlack20"/>
+
+</RelativeLayout>

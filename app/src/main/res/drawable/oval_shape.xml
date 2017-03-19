@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true"> <!-- pressed state -->
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval">
+
+            <stroke
+                android:width="2dp"
+                android:color="#FF8080"
+                android:dashGap="0dp"
+                android:dashWidth="0dp"/>
+            <size
+                android:width="20dp"
+                android:height="20dp"
+                />
+            <solid
+                android:color="#FFFFFF"
+                />
+
+        </shape>
+    </item>
+    <item> <!-- default state -->
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval">
+
+            <stroke
+                android:width="2dp"
+                android:color="#FF0000"
+                android:dashGap="0dp"
+                android:dashWidth="0dp"/>
+            <size
+                android:width="20dp"
+                android:height="20dp"
+                />
+
+        </shape>
+    </item>
+</selector>

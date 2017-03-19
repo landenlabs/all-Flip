@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grid"
+    android:backgroundTint="#4000ff00"
+    android:backgroundTintMode="src_over"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="10dp"
+    tools:context="com.landenlabs.all_flipanimation.ActivityObjAnimListRT">
+
+    <RelativeLayout
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/black"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/square_border_left"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Left"
+            android:textAppearance="@style/TextAppearanceBlack20" />
+
+        <TextView
+            android:id="@+id/right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/square_border_right"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Right"
+            android:textAppearance="@style/TextAppearanceBlack20" />
+
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_toLeftOf="@id/right"
+            android:layout_toRightOf="@id/left"
+            android:background="@drawable/square_border_center"
+            android:gravity="center"
+            android:rotationX="90"
+            android:text="Bottom"
+            android:textAppearance="@style/TextAppearanceWhite32" />
+
+        <TextView
+            android:id="@+id/title1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_toLeftOf="@id/right"
+            android:layout_toRightOf="@id/left"
+            android:background="@drawable/square_border_center"
+            android:gravity="center"
+            android:text="Top"
+            android:textAppearance="@style/TextAppearanceWhite32" />
+
+    </RelativeLayout>
+
+    <!--
+      ListView selector does not work. See list_row.xml
+      for alternate solution.
+
+      android:listSelector="@drawable/round_border_sel"
+    -->
+    <!--
+      Setting choiceMode is important to get persistent
+      checked/activated state to work.
+    -->
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/titleBar"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="fill_vertical"
+        android:choiceMode="singleChoice"
+        android:gravity="center_horizontal"
+        android:scrollbars="vertical"
+        android:smoothScrollbar="true" />
+</RelativeLayout>
