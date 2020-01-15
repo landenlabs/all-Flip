@@ -1,25 +1,34 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '24.0.3'
+    compileSdkVersion 29
+
     defaultConfig {
         applicationId "com.landenlabs.all_flipanimation"
         minSdkVersion 15
-        targetSdkVersion 24
-        versionCode 102
-        versionName '1.02'
+        targetSdkVersion 29
+        versionCode 10115
+        versionName '1.01.15'
+
+        // Limit languages to following list.
+        resConfigs "en", "es"
+
+        ndk {
+            // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-            applicationVariants.all { variant ->
-                appendVersionNameVersionCode(variant, defaultConfig)
-            }
         }
+    }
+
+    // Save app version in string so resource can be used in layouts
+    applicationVariants.all { variant ->
+        variant.resValue "string", "versionName", "version " + variant.versionName
     }
 
     lintOptions {
@@ -32,26 +41,35 @@ android {
 
     productFlavors {
     }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            // Enable verbose lint reporting during build.
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:24.2.0'
+    // implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
 }
 
-
-def appendVersionNameVersionCode(variant, defaultConfig) {
-    variant.outputs.each { output ->
-        if (output.zipAlign) {
-            def file = output.outputFile
-            def fileName = file.name.replace(".apk", "-v" + defaultConfig.versionCode + ".apk")
-            def ourname = project.parent.name;
-            fileName = fileName.replace("app-", "$ourname-");
-            output.outputFile = new File(file.parent, fileName)
-        }
-
-        def file = output.packageApplication.outputFile
-        def fileName = file.name.replace(".apk", "-v" + defaultConfig.versionCode + ".apk")
-        output.packageApplication.outputFile = new File(file.parent, fileName)
+// Rename app
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        def ourname = project.parent.name
+        outputFileName = "$ourname-${variant.name}-${variant.versionName}.apk"
+        println "out name= $outputFileName"
     }
 }
