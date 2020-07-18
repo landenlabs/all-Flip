@@ -5,10 +5,10 @@ android {
 
     defaultConfig {
         applicationId "com.landenlabs.all_flipanimation"
-        minSdkVersion 15
+        minSdkVersion 23
         targetSdkVersion 29
-        versionCode 10115
-        versionName '1.01.15'
+        versionCode 10718
+        versionName '1.07.18'
 
         // Limit languages to following list.
         resConfigs "en", "es"
@@ -26,6 +26,9 @@ android {
         }
     }
 
+    productFlavors {
+    }
+
     // Save app version in string so resource can be used in layouts
     applicationVariants.all { variant ->
         variant.resValue "string", "versionName", "version " + variant.versionName
@@ -37,9 +40,6 @@ android {
                 'UseCompoundDrawables', 'HandlerLeak', 'ViewConstructor', 'SetTextI18n',
                 'RtlSymmetry', 'RtlHardcoded', 'ContentDescription',
                 'MissingTranslation', 'ValidFragment', 'UnusedAttribute'
-    }
-
-    productFlavors {
     }
 
     packagingOptions {
