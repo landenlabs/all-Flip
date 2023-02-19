@@ -1,0 +1,10 @@
+#!/bin/tcsh
+#
+# 
+
+adb shell screencap -p /sdcard/screen.png
+adb pull /sdcard/screen.png
+adb shell rm /sdcard/screen.png
+
+# rename to first optional arg of script.
+convert -quality 70 screen.png $1

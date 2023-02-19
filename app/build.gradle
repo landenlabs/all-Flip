@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.landenlabs.all_flipanimation"
         minSdkVersion 23
-        targetSdkVersion 29
+        targetSdkVersion 33
+
         versionCode 10718
         versionName '1.07.18'
 
@@ -17,6 +18,8 @@ android {
             // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
             abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
+
+        buildConfigField "long", "BuildTimeMilli", System.currentTimeMillis() + "L"
     }
 
     buildTypes {
@@ -31,7 +34,7 @@ android {
 
     // Save app version in string so resource can be used in layouts
     applicationVariants.all { variant ->
-        variant.resValue "string", "versionName", "version " + variant.versionName
+        variant.resValue "string", "versionName", "v" + variant.versionName
     }
 
     lintOptions {
@@ -42,10 +45,6 @@ android {
                 'MissingTranslation', 'ValidFragment', 'UnusedAttribute'
     }
 
-    packagingOptions {
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-    }
 
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
@@ -62,7 +61,7 @@ android {
 
 dependencies {
     // implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 }
 
 // Rename app
