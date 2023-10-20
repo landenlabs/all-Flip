@@ -25,6 +25,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import androidx.fragment.app.FragmentActivity;
+
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -35,17 +37,20 @@ import android.view.WindowManager;
 public class Ui {
 
     @SuppressWarnings("unchecked")
-    public static final <E extends View> E viewById(View rootView, int id) {
+    public static <E extends View> E viewById(View rootView, int id) {
         return (E) rootView.findViewById(id);
     }
 
-    public static final <E extends View> E viewById(Activity rootView, int id) {
-        return (E) rootView.findViewById(id);
+    /** @noinspection unchecked*/
+    public static <E extends View> E viewById(Activity rootView, int id) {
+        Object obj = rootView.findViewById(id);
+        return (E)obj;
     }
 
-
-    public static final <E extends View> E viewById(FragmentActivity fact, int id) {
-        return (E) fact.findViewById(id);
+    /** @noinspection unchecked*/
+    public static <E extends View> E viewById(FragmentActivity fact, int id) {
+        Object obj = fact.findViewById(id);
+        return (E)obj;
     }
 
 
@@ -63,16 +68,6 @@ public class Ui {
      */
     public static float pxToDp(int px) {
         return (px / Resources.getSystem().getDisplayMetrics().density);
-    }
-
-    /**
-     * @return DisplayMetrics
-     */
-    public static DisplayMetrics getDisplayMetrics(Context context) {
-        DisplayMetrics dm = new DisplayMetrics();
-        ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE))
-                .getDefaultDisplay().getMetrics(dm);
-        return dm;
     }
 
 }

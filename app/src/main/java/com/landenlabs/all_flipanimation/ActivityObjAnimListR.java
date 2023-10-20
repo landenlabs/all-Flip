@@ -27,6 +27,7 @@ import android.animation.TypeEvaluator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -46,9 +47,9 @@ import java.util.List;
 public class ActivityObjAnimListR extends Activity {  // ActionBarActivity
 
     // ---- Timer ----
-    private Handler m_handler = new Handler();
-    private int mDurationMsec = 3000;
-    private Runnable m_updateElapsedTimeTask = new Runnable() {
+    private final Handler m_handler = new Handler(Looper.getMainLooper());
+    private final int mDurationMsec = 3000;
+    private final Runnable m_updateElapsedTimeTask = new Runnable() {
         public void run() {
             animateIt();
             m_handler.postDelayed(this, mDurationMsec);   // Re-execute after msec.
