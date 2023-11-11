@@ -8,8 +8,8 @@ android {
         minSdkVersion 23
         targetSdkVersion 34
 
-        versionCode 11020
-        versionName '1.10.20'
+        versionCode 11111
+        versionName '1.11.11'
         resourceConfigurations += ['en', 'es']
 
         // Limit languages to following list.
@@ -22,10 +22,27 @@ android {
         buildConfigField "long", "BuildTimeMilli", System.currentTimeMillis() + "L"
     }
 
+    signingConfigs {
+        release {
+            // See all-sensor for correct way to hide and manage sign passwords.
+            storeFile file('/Users/ldennis/Dropbox/android/keystores/flip.jks')
+            storePassword 'Salem2nh-k'
+            keyAlias 'flip'
+            keyPassword 'Salem2nh-f'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            // Enables code shrinking, obfuscation, and optimization.
+            minifyEnabled true
+
+            // List of resources removed at end of generated mapping file:
+            // grep unused ./app/build/outputs/mapping/demoRelease/resources.txt
+            shrinkResources true
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -71,11 +88,12 @@ android.applicationVariants.configureEach { variant ->
         println "out name= $outputFileName"
     }
 }
+
 // Rename app
-//  {project}-{flavor}-{buildType}.apk -> {parentProject}-{appType}-{versionNameSuffix}-{buildType}-{versionStr}.apk
+//  {project}-{flavor}-{buildType}.apk -> {parentProject}-{versionNameSuffix}-{buildType}-{versionStr}.apk
 //  Ex:
-//           app-release.apk -> route-base-release-1.02.3456.apk
-//           app-release.aab -> route-base-release-1.4.27.aab
+//           app-release.apk -> flip-release-1.02.3456.apk
+//           app-release.aab -> flip-release-1.4.27.aab
 android.applicationVariants.all {
     variant -> variant.outputs.all {
         def ourname = project.parent.name
