@@ -16,7 +16,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author Dennis Lang
- * @see http://LanDenLabs.com/
+ * @see https://landenlabs.com/
  */
 
 package com.landenlabs.all_flipanimation;
@@ -45,7 +45,7 @@ public class ActivityViewFlipper extends Activity {
     boolean mAutoMode = false;
     boolean mRotateYaxis = true;
     FlipDirection mDir = mRotateYaxis ? FlipDirection.LEFT_RIGHT : FlipDirection.TOP_BOTTOM;
-    float[] mCameraPos = {0.0f, 0.0f, -8.0f};
+    final float[] mCameraPos = {0.0f, 0.0f, -8.0f};
     ViewAnimator mViewAnimator;
     View mClickView;
     TextView mTitle;

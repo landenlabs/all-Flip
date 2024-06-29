@@ -16,7 +16,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author Dennis Lang
- * @see http://LanDenLabs.com/
+ * @see https://landenlabs.com/
  */
 
 package com.landenlabs.all_flipanimation;
@@ -134,7 +134,7 @@ public class MainActivity extends Activity {
 
     private void openWebSite() {
         Intent intent = new Intent(Intent.ACTION_VIEW,
-            Uri.parse("http://landenlabs.com/android/flip-animation/index.html"));
+            Uri.parse("https://landenlabs.com/android/flip-animation/index.html"));
         startActivity(intent);
     }
 }

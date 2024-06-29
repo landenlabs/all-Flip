@@ -16,7 +16,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author Dennis Lang
- * @see http://LanDenLabs.com/
+ * @see https://landenlabs.com/
  */
 
 package com.landenlabs.all_flipanimation;
@@ -29,10 +29,10 @@ import android.widget.TextView;
  * Created by dlang_local on 3/17/2015.
  */
 public class SlideBar {
-    View mParent;
-    TextView mLabel;
-    SeekBar mSeekBar;
-    String mLabelFmt;
+    final View mParent;
+    final TextView mLabel;
+    final SeekBar mSeekBar;
+    final String mLabelFmt;
     ValueChanged mValueChanged;
 
     public SlideBar(View parent, String labelFmt) {

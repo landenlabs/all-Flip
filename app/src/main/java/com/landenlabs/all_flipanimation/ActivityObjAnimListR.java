@@ -16,7 +16,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author Dennis Lang
- * @see http://LanDenLabs.com/
+ * @see https://landenlabs.com/
  */
 
 package com.landenlabs.all_flipanimation;
@@ -42,7 +42,7 @@ import java.util.List;
  * Using rotation (R) only.   See ActivityObjAnimListRT for alternate look.
  *
  * @author Dennis Lang (LanDen Labs)
- * @see <a href="http://landenlabs.com/android/index-m.html"> author's web-site </a>
+ * @see <a href="https://landenlabs.com/android/index-m.html"> author's web-site </a>
  */
 public class ActivityObjAnimListR extends Activity {  // ActionBarActivity
 
@@ -61,7 +61,7 @@ public class ActivityObjAnimListR extends Activity {  // ActionBarActivity
             "Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple");
 
     // ---- Local Data ----
-    private float mCameraDist = 192000;
+    private final float mCameraDist = 192000;
     private int mCurrentIdx = 0;
     private TextView mTitle1;
     private TextView mTitle2;

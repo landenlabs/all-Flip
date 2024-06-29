@@ -16,7 +16,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author Dennis Lang
- * @see http://LanDenLabs.com/
+ * @see https://landenlabs.com/
  */
 
 package com.landenlabs.all_flipanimation;
@@ -37,7 +37,7 @@ import android.widget.TextView;
  * Demonstrate rotating View animation using two ObjectAnimators.
  *
  * @author Dennis Lang (LanDen Labs)
- * @see <a href="http://landenlabs.com/android/index-m.html"> author's web-site </a>
+ * @see <a href="https://landenlabs.com/android/index-m.html"> author's web-site </a>
  */
 public class ActivityObjAnimView extends Activity {
 
@@ -66,7 +66,7 @@ public class ActivityObjAnimView extends Activity {
 
     // ---- Local Data ----
     private float mCameraDist = 192000;
-    private float mPivotPos = 0.5f;
+    private final float mPivotPos = 0.5f;
     private boolean mRotateYaxis = false;
     private boolean mAutoMode = false;
     private boolean mIsForward = true;

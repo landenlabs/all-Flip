@@ -6,9 +6,12 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // https://developer.android.com/studio/releases/gradle-plugin
-        // https://gradle.org/releases/
-        classpath 'com.android.tools.build:gradle:8.0.2' // AndroidStudio eel
+        // https://developer.android.com/studio/releases/gradle-plugin?buildsystem=ndk-build#updating-gradle
+        // https://mvnrepository.com/artifact/com.android.tools.build/gradle?repo=google
+        classpath 'com.android.tools.build:gradle:8.5.0'  // requires wrapper gradle 8.2+
+
+        // For kotlin plugins
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22")
     }
 }
 

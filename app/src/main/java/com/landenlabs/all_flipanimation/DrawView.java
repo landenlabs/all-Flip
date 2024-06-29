@@ -16,7 +16,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author Dennis Lang
- * @see http://LanDenLabs.com/
+ * @see https://landenlabs.com/
  */
 
 package com.landenlabs.all_flipanimation;
@@ -34,19 +34,19 @@ import android.view.View;
  */
 public class DrawView extends View {
 
-    boolean mHing1Right = true;
+    final boolean mHing1Right = true;
     float mDegrees1 = 10.0f;
-    boolean mHing2Right = false;
+    final boolean mHing2Right = false;
     float mDegrees2 = 60.0f;
 
-    int mColorBg1 = Color.rgb(128, 128, 128);
-    int mColorBg2 = Color.rgb(160, 160, 160);
+    final int mColorBg1 = Color.rgb(128, 128, 128);
+    final int mColorBg2 = Color.rgb(160, 160, 160);
     float mMin = 0.1f;
     float mSize = 0.4f;
     float mMaxX = mMin + mSize;
     float mMaxY = mMin + mSize * 2;
 
-    Paint paint = new Paint();
+    final Paint paint = new Paint();
 
     public DrawView(Context context) {
         super(context);

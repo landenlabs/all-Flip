@@ -16,7 +16,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author Dennis Lang
- * @see http://LanDenLabs.com/
+ * @see https://landenlabs.com/
  */
 
 package com.landenlabs.all_flipanimation;
@@ -141,7 +141,7 @@ public class ViewFlipFactory {
         TOP_BOTTOM(0),
         BOTTOM_TOP(1);
 
-        private int mDir;
+        private final int mDir;
 
         FlipDirection(int d) {
             mDir = d;
@@ -184,13 +184,13 @@ public class ViewFlipFactory {
         private final float mPivotYf;
 
         enum Mode {USE_CAMERA, VIEW_ONLY}
-        Mode mMode = Mode.USE_CAMERA;
+        final Mode mMode = Mode.USE_CAMERA;
 
         private Camera mCamera;
-        private float[] mCameraPos;
-        private int mAxis;
-        private int mDir;   // 1=left To Right, -1=right to left
-        private View mView;
+        private final float[] mCameraPos;
+        private final int mAxis;
+        private final int mDir;   // 1=left To Right, -1=right to left
+        private final View mView;
 
         /**
          * Constructs a new {@code FlipAnimation} object.Two {@code FlipAnimation} objects are needed for a complete transition b/n two views.

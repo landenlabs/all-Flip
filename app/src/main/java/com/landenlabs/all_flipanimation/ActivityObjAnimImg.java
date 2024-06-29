@@ -16,7 +16,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author Dennis Lang
- * @see http://LanDenLabs.com/
+ * @see https://landenlabs.com/
  */
 
 package com.landenlabs.all_flipanimation;
@@ -40,13 +40,13 @@ import android.widget.TextView;
  * Demonstrate rotating Object animation for ImageView only.
  *
  * @author Dennis Lang (LanDen Labs)
- * @see <a href="http://landenlabs.com/android/index-m.html"> author's web-site </a>
+ * @see <a href="https://landenlabs.com/android/index-m.html"> author's web-site </a>
  */
 public class ActivityObjAnimImg extends Activity {
 
     // ---- Data ----
     private static final float END_ANGLE = 90.0f;
-    float mCameraZ = -50;
+    final float mCameraZ = -50;
     Flip3dAnimation mRotation1;
     Flip3dAnimation mRotation2;
 
@@ -72,11 +72,11 @@ public class ActivityObjAnimImg extends Activity {
 
     // ---- Local Data ----
     private float mCameraDist = 192000;
-    private float mPivotPos = 0.5f;
+    private final float mPivotPos = 0.5f;
     private boolean mRotateYaxis = false;
     private boolean mAutoMode = false;
     private boolean mIsForward = true;
-    private AnimatorSet mAnimatorSet = new AnimatorSet();
+    private final AnimatorSet mAnimatorSet = new AnimatorSet();
 
 
     /**
@@ -157,7 +157,7 @@ public class ActivityObjAnimImg extends Activity {
         float mCenterY;
         float mCameraZ;
         float mScaleX, mScaleY;
-        private Camera mCamera;
+        private final Camera mCamera;
 
         public Flip3dAnimation(Matrix matrix) {
             mMatrix = matrix;
