@@ -27,15 +27,21 @@ android {
     }
 
     signingConfigs {
-        release {
-            // See all-sensor for correct way to hide and manage sign passwords.
-            storeFile file('/Users/ldennis/Dropbox/android/keystores/flip.jks')
-            storePassword 'Salem2nh-k'
-            keyAlias 'flip'
-            keyPassword 'Salem2nh-f'
-        }
+        release
     }
 
+    // Load signing config (does not work for command line builds)
+    // println("Setting release=${rootDir}/release.properties")
+    if (file("${rootDir}/release.properties").exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(file("${rootDir}/release.properties")))
+        android.signingConfigs.release.storeFile = file(props.keyStore)
+        android.signingConfigs.release.storePassword = props.keyStorePassword
+        android.signingConfigs.release.keyAlias = props.keyAlias
+        android.signingConfigs.release.keyPassword = props.keyAliasPassword
+        println("Setting release to " + signingConfigs.release.storeFile.absolutePath )
+    }
+    
     buildTypes {
         release {
             // Enables code shrinking, obfuscation, and optimization.
@@ -48,9 +54,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
-    }
-
-    productFlavors {
     }
 
     // Save app version in string so resource can be used in layouts
