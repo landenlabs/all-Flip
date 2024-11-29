@@ -1,11 +1,14 @@
+// All-Flip
+// module build.gradle
+
 plugins {
     id ("com.android.application")
-    // Prevents duplicate kotlin warnings
-    id ("org.jetbrains.kotlin.android")
+    id ("org.jetbrains.kotlin.android") // Prevents duplicate kotlin warnings
 }
 
 android {
     compileSdk 34
+    namespace 'com.landenlabs.all_flipanimation'
 
     defaultConfig {
         applicationId "com.landenlabs.all_flipanimation"
@@ -14,16 +17,16 @@ android {
 
         versionCode 20627
         versionName '2.06.27'
-        resourceConfigurations += ['en', 'es']
 
         // Limit languages to following list.
-
-        ndk {
-            // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
-            abiFilters 'armeabi-v7a', 'arm64-v8a'
-        }
+        resourceConfigurations += ['en', 'es']
 
         buildConfigField "long", "BuildTimeMilli", System.currentTimeMillis() + "L"
+    }
+
+    // Save app version in string so resource can be used in layouts
+    applicationVariants.configureEach { variant ->
+        variant.resValue "string", "versionName", "v" + variant.versionName
     }
 
     signingConfigs {
@@ -41,7 +44,7 @@ android {
         android.signingConfigs.release.keyPassword = props.keyAliasPassword
         println("Setting release to " + signingConfigs.release.storeFile.absolutePath )
     }
-    
+
     buildTypes {
         release {
             // Enables code shrinking, obfuscation, and optimization.
@@ -53,12 +56,12 @@ android {
 
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-        }
-    }
 
-    // Save app version in string so resource can be used in layouts
-    applicationVariants.configureEach { variant ->
-        variant.resValue "string", "versionName", "v" + variant.versionName
+            ndk {
+                // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+            }
+        }
     }
 
     gradle.projectsEvaluated {
@@ -82,7 +85,6 @@ android {
     }
      */
 
-    namespace 'com.landenlabs.all_flipanimation'
     lint {
         abortOnError false
         disable 'DefaultLocale', 'SimpleDateFormat', 'InflateParams', 'SpUsage', 'UseCompoundDrawables', 'HandlerLeak', 'ViewConstructor', 'SetTextI18n', 'RtlSymmetry', 'RtlHardcoded', 'ContentDescription', 'MissingTranslation', 'ValidFragment', 'UnusedAttribute'
@@ -99,32 +101,6 @@ android.applicationVariants.configureEach { variant ->
         def ourname = project.parent.name
         outputFileName = "$ourname-${variant.name}-${variant.versionName}.apk"
         println "out name= $outputFileName"
-    }
-}
-
-// Rename app
-//  {project}-{flavor}-{buildType}.apk -> {parentProject}-{versionNameSuffix}-{buildType}-{versionStr}.apk
-//  Ex:
-//           app-release.apk -> flip-release-1.02.3456.apk
-//           app-release.aab -> flip-release-1.4.27.aab
-android.applicationVariants.configureEach {
-    variant -> variant.outputs.configureEach {
-        def ourname = project.parent.name
-        def buildType = outputFileName.replaceAll(".*(debug|release).*", '$1')
-        def versionStr = versionName.replaceAll("-.*", "")
-        def flavor = variant.mergedFlavor.versionNameSuffix.toString().replace("null", "")
-        // ext.flavorName = variant.name
-        def newNameRoot = "${ourname}${flavor}-${buildType}-${versionStr}"
-        outputFileName = "${newNameRoot}.apk"
-
-        // sign{flavor}{buildType}Bundle
-        //   Ex: signAppDebugBundle
-        def bundleFinalizeTaskName = "sign${variant.name.capitalize()}Bundle"
-        tasks.named(bundleFinalizeTaskName) {
-            def file = finalBundleFile.asFile.get()
-            def finalFile = new File(file.parentFile, "${newNameRoot}.aab")
-            finalBundleFile.set(finalFile)
-        }
     }
 }
 
