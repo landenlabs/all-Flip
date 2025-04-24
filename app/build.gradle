@@ -7,16 +7,16 @@ plugins {
 }
 
 android {
-    compileSdk 34
+    compileSdk 35
     namespace 'com.landenlabs.all_flipanimation'
 
     defaultConfig {
         applicationId "com.landenlabs.all_flipanimation"
         minSdkVersion 23
-        targetSdkVersion 34
+        targetSdkVersion 35
 
-        versionCode 20627
-        versionName '2.06.27'
+        versionCode 20701
+        versionName '2.06.28'
 
         // Limit languages to following list.
         resourceConfigurations += ['en', 'es']
