@@ -16,7 +16,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author Dennis Lang
- * @see https://landenlabs.com/
+ * @see https://LanDenLabs.com/
  */
 
 package com.landenlabs.all_flipanimation;
@@ -42,7 +42,7 @@ import java.util.List;
  * Using rotation and translation  (R & T).  See ActivityObjAnimListR for alternate look.
  *
  * @author Dennis Lang (LanDen Labs)
- * @see <a href="https://landenlabs.com/android/index-m.html"> author's web-site </a>
+ * @see <a href="https://LanDenLabs.com/android/index-m.html"> author's web-site </a>
  */
 public class ActivityObjAnimListRT extends Activity {
 

@@ -45,6 +45,8 @@ android {
         println("Setting release to " + signingConfigs.release.storeFile.absolutePath )
     }
 
+    buildFeatures.buildConfig = true
+
     buildTypes {
         release {
             // Enables code shrinking, obfuscation, and optimization.
