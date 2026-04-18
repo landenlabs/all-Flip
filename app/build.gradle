@@ -3,30 +3,27 @@
 
 plugins {
     id ("com.android.application")
-    id ("org.jetbrains.kotlin.android") // Prevents duplicate kotlin warnings
 }
 
 android {
-    compileSdk 36
-    namespace 'com.landenlabs.all_flipanimation'
+    compileSdk = 36
+    namespace = 'com.landenlabs.all_flipanimation'
 
     defaultConfig {
-        applicationId "com.landenlabs.all_flipanimation"
+        applicationId = "com.landenlabs.all_flipanimation"
         minSdkVersion 23
-        targetSdkVersion 36
+        targetSdk = 36
 
-        versionCode 20731
-        versionName '2.07.31'
+        versionCode = 60419
+        versionName = '6.04.19'
+
+        // Restore the versionName resource for layouts
+        resValue "string", "versionName", "v6.04.19"
 
         // Limit languages to following list.
         resourceConfigurations += ['en', 'es']
 
         buildConfigField "long", "BuildTimeMilli", System.currentTimeMillis() + "L"
-    }
-
-    // Save app version in string so resource can be used in layouts
-    applicationVariants.configureEach { variant ->
-        variant.resValue "string", "versionName", "v" + variant.versionName
     }
 
     signingConfigs {
@@ -45,19 +42,22 @@ android {
         println("Setting release to " + signingConfigs.release.storeFile.absolutePath )
     }
 
-    buildFeatures.buildConfig = true
+    buildFeatures {
+        buildConfig = true
+        resValues = true
+    }
 
     buildTypes {
         release {
             // Enables code shrinking, obfuscation, and optimization.
-            minifyEnabled true
+            minifyEnabled = true
 
             // List of resources removed at end of generated mapping file:
             // grep unused ./app/build/outputs/mapping/demoRelease/resources.txt
-            shrinkResources true
+            shrinkResources = true
 
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig = signingConfigs.release
 
             ndk {
                 // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
@@ -75,51 +75,38 @@ android {
         }
     }
 
-    /*
     compileOptions {
         // https://developer.android.com/studio/write/java8-support
         // isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-     */
 
     lint {
-        abortOnError false
+        abortOnError = false
         disable 'DefaultLocale', 'SimpleDateFormat', 'InflateParams', 'SpUsage', 'UseCompoundDrawables', 'HandlerLeak', 'ViewConstructor', 'SetTextI18n', 'RtlSymmetry', 'RtlHardcoded', 'ContentDescription', 'MissingTranslation', 'ValidFragment', 'UnusedAttribute'
     }
+}
+
+// Rename APK outputs using modern AGP 9.x API
+androidComponents {
+    onVariants(selector().all(), { variant ->
+        variant.outputs.forEach { output ->
+            def ourName = rootProject.name
+            output.outputFileName.set("${ourName}-${variant.name}-${android.defaultConfig.versionName}.apk")
+        }
+    })
 }
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.1'
 }
 
-// Rename app
-android.applicationVariants.configureEach { variant ->
-    variant.outputs.configureEach {
-        def ourname = project.parent.name
-        outputFileName = "$ourname-${variant.name}-${variant.versionName}.apk"
-        println "out name= $outputFileName"
-    }
-}
-
 tasks.register('listFlavors') {
     description = 'List Flip flavors'
     doLast {
         println("--- Flip Flavors ---")
-        /*
-        android.productFlavors.all {
-            flavor -> println("  " + flavor.name + "\t" + android.defaultConfig.applicationId + flavor.applicationIdSuffix)
-        }
-         */
         printf("   %-20s %-20s %-40s   %s\n", "--Package--", "--Name--", "--Description/Flavor--", "--isMinified--")
-        project.android.applicationVariants.all { variant ->
-            // def applicationId = [variant.mergedFlavor.applicationId, variant.buildType.applicationIdSuffix].findAll().join()
-            printf("   %-20s %-20s %-40s   %b\n", variant.getApplicationId(), variant.name, variant.description, variant.buildType.isMinifyEnabled())
-        }
     }
 }
 

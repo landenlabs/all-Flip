@@ -37,16 +37,14 @@ public class Ui {
         return (E) rootView.findViewById(id);
     }
 
-    /** @noinspection unchecked*/
+    @SuppressWarnings("unchecked")
     public static <E extends View> E viewById(Activity rootView, int id) {
-        Object obj = rootView.findViewById(id);
-        return (E)obj;
+        return (E) rootView.findViewById(id);
     }
 
-    /** @noinspection unchecked*/
+    @SuppressWarnings("unchecked")
     public static <E extends View> E viewById(FragmentActivity fact, int id) {
-        Object obj = fact.findViewById(id);
-        return (E)obj;
+        return (E) fact.findViewById(id);
     }
 
 

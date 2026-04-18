@@ -1,6 +1,6 @@
 # a LanDen Labs - AndroidFlipAnimation
-<br>15-Jan-2020
-<br>API 29 AndroidX Java 
+<br>May-2024 (Migrated to SDK 36, AGP 9.1.1, Gradle 9.3.1)
+<br>API 36 AndroidX Java
 
 Android demo of View rotation animation as if views are on a prism
 
