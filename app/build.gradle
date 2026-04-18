@@ -92,8 +92,7 @@ android {
 androidComponents {
     onVariants(selector().all(), { variant ->
         variant.outputs.forEach { output ->
-            def ourName = rootProject.name
-            output.outputFileName.set("${ourName}-${variant.name}-${android.defaultConfig.versionName}.apk")
+            output.outputFileName.set("flip-v${android.defaultConfig.versionName}-${variant.name}.apk")
         }
     })
 }

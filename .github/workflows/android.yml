@@ -2,11 +2,11 @@ name: Android CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
     tags:
       - 'v*'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:
@@ -29,8 +29,17 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew assembleDebug
 
-    - name: Upload APK
+    - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: app-debug
+        name: flip-apk
         path: app/build/outputs/apk/debug/*.apk
+
+    - name: Create Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v2
+      with:
+        files: app/build/outputs/apk/debug/*.apk
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
